@@ -12,6 +12,9 @@ import { saveAs } from 'file-saver';
 
 import jsPDF from 'jspdf';
 
+import { ToastrService }
+from 'ngx-toastr';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -26,37 +29,61 @@ import jsPDF from 'jspdf';
 })
 export class HomeComponent {
 
+  loading = false;
+
   city: string = '';
   weatherData: any = null;
 
   constructor(
-  private weatherService: WeatherService,
-  public languageService: LanguageService
+    private toastr: ToastrService,
+    private weatherService: WeatherService,
+    public languageService: LanguageService
   ) {}
   searchWeather() {
 
-    if (!this.city) return;
+  if (!this.city) return;
 
-    this.weatherService.getWeather(this.city)
-      .subscribe({
+  this.loading = true;
 
-        next: (data) => {
-          this.weatherData = data;
-        },
+  this.weatherService.getWeather(this.city)
+    .subscribe({
 
-        error: (err) => {
-          console.log('Erro ao buscar clima:', err);
-        }
+      next: (data) => {
 
-      });
+        this.loading = false;
 
-      this.history.push(this.city);
+        this.weatherData = data;
 
-    localStorage.setItem(
-      'history',
-      JSON.stringify(this.history)
-    );
-  }
+        this.toastr.success(
+          'Clima carregado com sucesso!'
+        );
+
+      },
+
+      error: (err) => {
+
+        this.loading = false;
+
+        console.log(
+          'Erro ao buscar clima:',
+          err
+        );
+
+        this.toastr.error(
+          'Erro ao buscar clima'
+        );
+
+      }
+
+    });
+
+  this.history.push(this.city);
+
+  localStorage.setItem(
+    'history',
+    JSON.stringify(this.history)
+  );
+}
 
   exportCSV() {
 
@@ -162,4 +189,16 @@ ngOnInit() {
 }
 
 history: string[] = [];
+
+showModal = false;
+
+openModal() {
+
+  this.showModal = true;
+}
+
+closeModal() {
+
+  this.showModal = false;
+}
 }

@@ -18,6 +18,16 @@
 
   </div>
 
+  <div
+  class="spinner"
+  *ngIf="loading"
+  ></div>
+
+  <div
+  class="skeleton-card"
+  *ngIf="loading"
+></div>
+
   <div class="weather-card" *ngIf="weatherData">
 
     <h2>{{ weatherData.name }}</h2>
@@ -106,6 +116,38 @@
     </li>
 
   </ul>
+
+</div>
+
+<button (click)="openModal()">
+  Ver detalhes
+</button>
+
+<div
+  class="modal-overlay"
+  *ngIf="showModal"
+>
+
+  <div class="modal-box">
+
+    <h2>
+      Detalhes do Clima
+    </h2>
+
+    <p>
+      Cidade: {{ weatherData.name }}
+    </p>
+
+    <p>
+      Temperatura:
+      {{ weatherData.main.temp }} °C
+    </p>
+
+    <button (click)="closeModal()">
+      Fechar
+    </button>
+
+  </div>
 
 </div>
 

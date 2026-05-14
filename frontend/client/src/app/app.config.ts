@@ -8,6 +8,12 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import {
+  provideToastr
+} from 'ngx-toastr';
+
 export const appConfig: ApplicationConfig = {
 
   providers: [
@@ -16,7 +22,11 @@ export const appConfig: ApplicationConfig = {
 
     provideHttpClient(),
 
-    importProvidersFrom(FormsModule)
+    importProvidersFrom(FormsModule),
+
+    provideAnimations(),
+
+    provideToastr()
 
   ]
 

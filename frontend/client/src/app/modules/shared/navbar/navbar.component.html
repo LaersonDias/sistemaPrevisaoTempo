@@ -1,29 +1,37 @@
 <nav class="navbar">
 
-  <h2>🌦️ weather app</h2>
+  <div class="logo-section">
 
-  <button (click)="toggleTheme()">
+    <h2>🌦️ WeatherPro</h2>
 
-    {{ isDarkMode ? '☀️' : '🌙' }}
+  </div>
 
-  </button>
+  <div class="navbar-actions">
 
-  <button (click)="logout()">
-    Logout
-  </button>
+    <select
+      (change)="changeLanguage($any($event.target).value)"
+    >
 
-  <select
-  (change)="changeLanguage($event)"
-  >
+      <option value="pt">
+        PT
+      </option>
 
-  <option value="pt">
-    Português
-  </option>
+      <option value="en">
+        EN
+      </option>
 
-  <option value="en">
-    English
-  </option>
+    </select>
 
-  </select>
+    <button (click)="toggleTheme()">
+
+      {{ isDarkMode ? '☀️' : '🌙' }}
+
+    </button>
+
+    <button (click)="logout()">
+      Logout
+    </button>
+
+  </div>
 
 </nav>
