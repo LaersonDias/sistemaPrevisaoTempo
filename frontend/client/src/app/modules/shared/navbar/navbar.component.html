@@ -1,11 +1,29 @@
 <nav class="navbar">
 
-  <h2>🌦️ Weather App</h2>
+  <h2>🌦️ weather app</h2>
 
   <button (click)="toggleTheme()">
 
-    {{ isDarkMode ? '☀️ Light' : '🌙 Dark' }}
+    {{ isDarkMode ? '☀️' : '🌙' }}
 
   </button>
+
+  <button (click)="logout()">
+    Logout
+  </button>
+
+  <select
+  (change)="changeLanguage($event)"
+  >
+
+  <option value="pt">
+    Português
+  </option>
+
+  <option value="en">
+    English
+  </option>
+
+  </select>
 
 </nav>

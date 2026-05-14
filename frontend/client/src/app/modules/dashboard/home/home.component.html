@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PREVISÃO DO TEMPO</title>
-</head>
-<body>
-  <div class="weather-container">
+<div class="weather-container">
 
-  <h1>Sistema de Previsão do Tempo</h1>
+  <h1>
+    {{ languageService.getTranslations().title }}
+  </h1>
 
   <div class="search-box">
+
     <input
       type="text"
-      placeholder="Digite uma cidade"
+      [placeholder]="languageService.getTranslations().cityPlaceholder"
       [(ngModel)]="city"
     >
 
     <button (click)="searchWeather()">
-      Pesquisar
+      {{ languageService.getTranslations().search }}
     </button>
+
   </div>
 
   <div class="weather-card" *ngIf="weatherData">
@@ -49,8 +45,18 @@
 
     </div>
 
+    <div class="export-buttons">
+
+      <button (click)="exportCSV()">
+        Exportar CSV
+      </button>
+
+      <button (click)="exportPDF()">
+        Exportar PDF
+      </button>
+
+    </div>
+
   </div>
 
 </div>
-</body>
-</html>
