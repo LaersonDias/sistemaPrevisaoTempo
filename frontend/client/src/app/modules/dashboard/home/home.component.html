@@ -57,6 +57,56 @@
 
     </div>
 
+    <button (click)="saveFavorite()">
+      ⭐ Favoritar
+    </button>
+
   </div>
+
+  <div class="favorites">
+
+    <h3>Favoritos</h3>
+
+    <ul>
+
+      <li *ngFor="let city of favorites">
+
+        {{ city }}
+
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="history">
+
+  <h3>Histórico</h3>
+
+  <ul>
+
+    <li *ngFor="let item of history">
+
+      {{ item }}
+
+    </li>
+
+  </ul>
+
+</div><div class="history">
+
+  <h3>Histórico</h3>
+
+  <ul>
+
+    <li *ngFor="let item of history">
+
+      {{ item }}
+
+    </li>
+
+  </ul>
+
+</div>
 
 </div>

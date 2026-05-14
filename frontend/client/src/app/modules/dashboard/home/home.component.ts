@@ -50,6 +50,12 @@ export class HomeComponent {
 
       });
 
+      this.history.push(this.city);
+
+    localStorage.setItem(
+      'history',
+      JSON.stringify(this.history)
+    );
   }
 
   exportCSV() {
@@ -122,4 +128,38 @@ ${this.weatherData.main.humidity}%`,
 
   doc.save('clima.pdf');
 }
+
+saveFavorite() {
+
+  let favorites =
+    JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+
+  favorites.push(this.weatherData.name);
+
+  localStorage.setItem(
+    'favorites',
+    JSON.stringify(favorites)
+  );
+
+  alert('Cidade favoritada');
+}
+
+favorites: string[] = [];
+
+ngOnInit() {
+
+  this.favorites =
+    JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+
+  this.history =
+  JSON.parse(
+    localStorage.getItem('history') || '[]'
+  );
+}
+
+history: string[] = [];
 }
